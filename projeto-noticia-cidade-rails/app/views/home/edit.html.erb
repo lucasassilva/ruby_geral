@@ -1,0 +1,33 @@
+<div class="container mt-5"> 
+
+    <h2>Editar notícia</h2>
+    <hr />
+
+    <div class="card">
+
+        <div class="card-body">
+            
+            <%= form_with url: '/update', model: @notice, method: :put do |form| %>
+            
+                <%= form.hidden_field :Notice, value: @notice.id, name: 'id' %>
+
+                <div class="form-group">
+                    <%= form.label :title, 'Titulo:' %>
+                    <%= text_field_tag :title, @notice.title, class: 'form-control', 'autocomplete': 'off'%>
+                </div>
+ 
+                <div class="form-group">
+                    <%= form.label :description, 'Descrição:' %>
+                    <%= text_area_tag(:description, @notice.description, 'style': 'resize:none; outline:none', 
+                    'class': 'form-control', 'rows': '3', 'autocomplete': 'off') %>
+
+                </div>
+
+                <%= form.submit 'Editar', class: 'btn btn-primary' %>
+
+            <% end %>
+        
+        </div>
+      </div>
+
+</div>

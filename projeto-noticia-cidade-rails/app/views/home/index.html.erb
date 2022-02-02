@@ -1,0 +1,33 @@
+<div class="container mt-5">
+
+    <h2>Lista de notícias</h2>
+    <%= link_to 'Adicionar Noticia', create_path, class: 'btn btn-primary' %>
+    <hr />
+
+    <% @notices.each do |notice| %>
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <div class="card-title">
+                <h2><%= notice.title%></h2>
+            </div>
+            <hr />
+            <div class="card-content">
+                <p class="text-justify"><%= notice.description %></p>
+            </div>
+            <hr />
+
+            <%= form_with url: '/delete', method: :delete do |form| %>
+                <%= form.hidden_field :Notice, value: notice.id, name: 'id' %>
+                <%= link_to 'Editar', {:controller => 'home', :action => 'show', :id => notice.id}, 
+                 class: 'btn btn-light' %>
+                <%= form.submit 'Deletar', class: 'btn btn-danger' %>
+            <% end %>
+
+        </div>
+
+      </div>
+
+    <% end %>
+
+</div>
